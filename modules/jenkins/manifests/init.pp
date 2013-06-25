@@ -49,13 +49,7 @@
 #    'git-client': {}
 #    'token-macro': {}
 #
-class jenkins(
-  $version     = 'installed',
-  $lts         = 0,
-  $repo        = 1,
-  $config_hash = undef,
-  $plugin_hash = undef,
-) {
+class jenkins( $version = 'installed', $lts = 0, $repo = 1, $config_hash = undef, $plugin_hash = undef) {
 
   class {
     'jenkins::repo':
