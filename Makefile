@@ -8,4 +8,4 @@ apply:
 	puppet apply $(SITEMANIFEST)
 
 lint:
-	find . -name '*.pp' -print -exec puppet-lint $(LINTFLAGS) '{}' \;
+	find . -name '*.pp' -not -path "./modules/stdlib/*" -print -exec puppet-lint $(LINTFLAGS) '{}' \;
