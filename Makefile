@@ -1,5 +1,5 @@
 SITEMANIFEST=/etc/puppet/manifests/site.pp
-LINTFLAGS=
+LINTFLAGS=--no-80chars-check
 
 noop:
 	puppet apply $(SITEMANIFEST) --noop
