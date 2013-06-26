@@ -38,6 +38,7 @@ class gitorious_jenkins::builder {
     'make',
     'mysql-devel',
     'oniguruma-devel',
+    'postgresql-devel',
     'ruby-devel',
     'sphinx',
   ]:
