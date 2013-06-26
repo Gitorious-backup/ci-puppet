@@ -37,6 +37,7 @@ class gitorious_jenkins::builder {
     'libxslt-devel',
     'make',
     'mysql-devel',
+    'oniguruma-devel',
     'ruby-devel',
     'sphinx',
   ]:
