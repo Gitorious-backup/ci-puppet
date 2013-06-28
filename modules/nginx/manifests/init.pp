@@ -24,6 +24,16 @@ class nginx {
     notify  => Service['nginx'],
   }
 
+  # Docroot location
+  file { '/var/local/www':
+    ensure  => directory,
+    group   => 'root',
+    owner   => 'root',
+    source  => 'puppet:///modules/nginx/www',
+    recurse => true,
+    require => Service['nginx'],
+  }
+
   # SSL (HTTPS) cert
   file { 'ci.gitorious.org.crt':
     ensure  => file,
