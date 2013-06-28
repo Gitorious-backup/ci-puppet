@@ -1,4 +1,4 @@
-node 'gitoriousci.ktdreyer.com' {
+node 'ci.gitorious.org' {
   # Dependencies for Jenkins
   class {'java':}
   class {'git':}

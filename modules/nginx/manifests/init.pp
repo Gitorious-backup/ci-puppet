@@ -25,13 +25,20 @@ class nginx {
   }
 
   # SSL (HTTPS) cert
-  file { 'gitoriousci.ktdreyer.com-chained.crt':
+  file { 'ci.gitorious.org.crt':
     ensure  => file,
-    path    => '/etc/pki/tls/certs/gitoriousci.ktdreyer.com-chained.crt',
+    path    => '/etc/pki/tls/certs/ci.gitorious.org.crt',
     group   => 'root',
     owner   => 'root',
     mode    => '0644',
-    source  => 'puppet:///modules/nginx/gitoriousci.ktdreyer.com-chained.crt',
+    source  => 'puppet:///modules/nginx/ci.gitorious.org.crt',
+    notify  => Service['nginx'],
+  }
+
+  # Remove old SSL cert
+  file { 'gitoriousci.ktdreyer.com-chained.crt':
+    ensure  => absent,
+    path    => '/etc/pki/tls/certs/gitoriousci.ktdreyer.com-chained.crt',
     notify  => Service['nginx'],
   }
 }
