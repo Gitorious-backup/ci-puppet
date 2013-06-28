@@ -1,4 +1,6 @@
 node 'ci.gitorious.org' {
+  # Set yum on autopilot
+  class {'yum::autopilot':}
   # Dependencies for Jenkins
   class {'java':}
   class {'git':}
