@@ -3,7 +3,6 @@ node 'ci.gitorious.org' {
   class {'java':}
   class {'git':}
   class {'nginx':}
-  class {'cacert': }
   class {'iptables::webserver': }
   class {'stdlib':}
 
