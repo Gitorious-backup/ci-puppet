@@ -1,19 +1,19 @@
 server {
   listen         80;
-  server_name    ci.gitorious.org;
+  server_name    <%= @fqdn %>;
   return 302     https://$host$request_uri;
 }
 
 server {
   listen              443 ssl;
-  server_name         ci.gitorious.org;
-  ssl_certificate     /etc/pki/tls/certs/ci.gitorious.org.crt;
-  ssl_certificate_key /etc/pki/tls/private/ci.gitorious.org.key;
+  server_name         <%= @fqdn %>;
+  ssl_certificate     /etc/pki/tls/certs/<%= @fqdn %>.crt;
+  ssl_certificate_key /etc/pki/tls/private/<%= @fqdn %>.key;
 
   # Nginx configuration specific to Jenkins
   location ^~ /jenkins/ {
 
-    # Convert inbound WAN requests for https://domain.tld/jenkins/ to 
+    # Convert inbound WAN requests for https://domain.tld/jenkins/ to
     # local network requests for http://10.0.0.100:8080/jenkins/
     proxy_pass http://127.0.0.1:8080/jenkins/;
 

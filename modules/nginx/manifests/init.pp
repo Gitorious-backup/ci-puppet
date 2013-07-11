@@ -14,12 +14,11 @@ class nginx {
   }
 
   # Vhost configuration
-  file { '/etc/nginx/conf.d':
-    ensure  => directory,
+  file { '/etc/nginx/conf.d/default.conf':
+    ensure  => present,
     group   => 'root',
     owner   => 'root',
-    source  => 'puppet:///modules/nginx/conf.d',
-    recurse => true,
+    content => template('nginx/conf.d/default.conf.erb'),
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
@@ -35,13 +34,13 @@ class nginx {
   }
 
   # SSL (HTTPS) cert
-  file { 'ci.gitorious.org.crt':
+  file { "${::fqdn}.crt":
     ensure  => file,
-    path    => '/etc/pki/tls/certs/ci.gitorious.org.crt',
+    path    => "/etc/pki/tls/certs/${::fqdn}.crt",
     group   => 'root',
     owner   => 'root',
     mode    => '0644',
-    source  => 'puppet:///modules/nginx/ci.gitorious.org.crt',
+    source  => "puppet:///modules/nginx/${::fqdn}.crt",
     notify  => Service['nginx'],
   }
 
