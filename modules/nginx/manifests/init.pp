@@ -13,6 +13,16 @@ class nginx {
     require    => Package['nginx'],
   }
 
+  # Default nginx configuration
+  file { '/etc/nginx/nginx.conf':
+    ensure  => present,
+    group   => 'root',
+    owner   => 'root',
+    source  => 'puppet:///modules/nginx/nginx.conf',
+    require => Package['nginx'],
+    notify  => Service['nginx'],
+  }
+
   # Vhost configuration
   file { '/etc/nginx/conf.d/default.conf':
     ensure  => present,
