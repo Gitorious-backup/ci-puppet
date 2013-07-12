@@ -1,6 +1,6 @@
 # Gitorious.org config for a Jenkins builder
 
-class gitorious_jenkins::builder {
+class gitorious_jenkins::builder($scl = 'UNSET', $scl_url = 'UNSET') {
 
   # Homedir parent location for slave account(s)
   file { '/var/local/jenkins':
@@ -41,9 +41,26 @@ class gitorious_jenkins::builder {
     'oniguruma-devel',
     'postgresql-devel',
     'patch',
-    'ruby-devel',
     'sphinx',
   ]:
+    ensure => installed,
+  }
+
+  # Should we use the standard ruby packages,
+  # or should we use an alternate SCL package?
+  if ($scl == 'UNSET') {
+    $ruby_devel = 'ruby-devel'
+  } else {
+    $ruby_devel = $scl
+    yumrepo {$scl :
+      descr    => "${scl} SCL",
+      baseurl  => $scl_url,
+      gpgcheck => 0,
+      before   => Package[$ruby_devel],
+    }
+  }
+
+  package { $ruby_devel :
     ensure => installed,
   }
 
