@@ -8,9 +8,11 @@ class gitorious_jenkins {
       Class['java'],
     ],
     config_hash => {
-      'JENKINS_PORT'     => { 'value' => '8080' },
-      'JENKINS_AJP_PORT' => { 'value' => '-1' },
-      'JENKINS_ARGS'     => { 'value' =>
+      'JENKINS_PORT'         => { 'value' => '8080' },
+      'JENKINS_AJP_PORT'     => { 'value' => '-1' },
+      'JENKINS_JAVA_OPTIONS' => { 'value' =>
+        '-Djava.awt.headless=true -Dhudson.DNSMultiCast.disabled=true' },
+      'JENKINS_ARGS'         => { 'value' =>
         '--prefix=/jenkins --httpListenAddress=127.0.0.1' },
     },
   }
