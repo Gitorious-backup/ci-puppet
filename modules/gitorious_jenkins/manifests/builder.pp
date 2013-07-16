@@ -40,6 +40,7 @@ class gitorious_jenkins::builder {
     'mysql-devel',
     'oniguruma-devel',
     'postgresql-devel',
+    'patch',
     'ruby-devel',
     'sphinx',
   ]:
