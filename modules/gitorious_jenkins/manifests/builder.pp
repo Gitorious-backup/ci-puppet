@@ -33,6 +33,7 @@ class gitorious_jenkins::builder {
     'gcc',
     'gcc-c++',
     'ImageMagick-devel',
+    'libicu-devel',
     'libxml2-devel',
     'libxslt-devel',
     'make',
