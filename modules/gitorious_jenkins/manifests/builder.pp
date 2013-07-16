@@ -51,12 +51,15 @@ class gitorious_jenkins::builder($scl = 'UNSET', $scl_url = 'UNSET') {
   if ($scl == 'UNSET') {
     $ruby_devel = 'ruby-devel'
   } else {
-    $ruby_devel = $scl
+    $ruby_devel = "${scl}-ruby-devel"
     yumrepo {$scl :
       descr    => "${scl} SCL",
       baseurl  => $scl_url,
       gpgcheck => 0,
-      before   => Package[$ruby_devel],
+      before   => Package[$scl, $ruby_devel],
+    }
+    package { $scl :
+      ensure => installed,
     }
   }
 
