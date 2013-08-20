@@ -42,6 +42,7 @@ class gitorious_jenkins::builder($scl = 'UNSET', $scl_url = 'UNSET') {
     'postgresql-devel',
     'patch',
     'sphinx',
+    'tar',
   ]:
     ensure => installed,
   }
