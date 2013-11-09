@@ -30,6 +30,7 @@ class gitorious_jenkins::builder($scl = 'UNSET', $scl_url = 'UNSET') {
 
   # Other dependencies (for bundler's gem installations)
   package { [
+    'file',
     'gcc',
     'gcc-c++',
     'ImageMagick-devel',
