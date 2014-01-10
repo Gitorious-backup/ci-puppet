@@ -19,6 +19,7 @@ class gitorious_jenkins {
 
   # Install Jenkins plugins.
   jenkins::plugin {
+    'jenkins-flowdock-plugin' : ;
     'git' : ;
     'git-client' : ;
   }
