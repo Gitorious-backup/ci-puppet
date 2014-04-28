@@ -44,6 +44,7 @@ class gitorious_jenkins::builder($scl = 'UNSET', $scl_url = 'UNSET') {
     'patch',
     'sphinx',
     'tar',
+    'nodejs',
   ]:
     ensure => installed,
   }
